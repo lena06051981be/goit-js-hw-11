@@ -8,6 +8,8 @@ const searchBtn = document.querySelector('form');
 
 searchForm.addEventListener('submit', onSearchForm);
 
+let query;
+
 function onSearchForm(event) {
   event.preventDefault();
   window.scrollTo({ top: 0 });
