@@ -11,7 +11,7 @@ searchForm.addEventListener('submit', onSearchForm);
 function onSearchForm(event) {
   event.preventDefault();
   window.scrollTo({ top: 0 });
-  page = 1;
+  // page = 1;
   query = event.currentTarget.searchQuery.value.trim();
   console.log(query);
   gallery.innerHTML = '';
@@ -22,7 +22,7 @@ function onSearchForm(event) {
     return;
   }
 
-  fetchImg(query, page)
+  fetchImg(query)
     .then(({ data }) => {
       console.log(data);
       console.log(data.totalHits);
