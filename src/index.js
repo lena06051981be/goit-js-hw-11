@@ -22,7 +22,6 @@ const observer = new IntersectionObserver(onLoad, options);
 const refs = {
   gallery: document.querySelector('.js-gallery-hbs'),
   searchForm: document.querySelector('#search-form'),
-  hideGif: document.querySelector('.dancing-gif'),
 };
 // console.log(refs.hideGif);
 refs.searchForm.addEventListener('submit', onSearchForm);
@@ -120,6 +119,7 @@ SmoothScroll({
 // -------- dancing Gif --------- //
 
 refs.searchForm.insertAdjacentHTML('beforeend', dancingGif());
+refs.hideGif = document.querySelector('.dancing-gif');
 
 refs.hideGif.addEventListener('click', removeGif);
 function removeGif() {
