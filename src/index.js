@@ -81,24 +81,32 @@ function onLoad(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       console.log('hello');
-      axiosImg(query, pageNumber).then(data => {
-        pageNumber += 1;
-        totalPage = Math.ceil(data.totalHits / data.hits.length);
-        console.log('pageNumber:', pageNumber);
-        if (pageNumber === totalPage) {
-          console.log(pageNumber, totalPage);
-          refs.gallery.insertAdjacentHTML('beforeend', pictureCard(data.hits));
+      axiosImg(query, pageNumber)
+        .then(data => {
+          pageNumber += 1;
+          totalPage = Math.ceil(data.totalHits / data.hits.length);
+          console.log('pageNumber:', pageNumber);
+          if (pageNumber === totalPage) {
+            console.log(pageNumber, totalPage);
+            refs.gallery.insertAdjacentHTML(
+              'beforeend',
+              pictureCard(data.hits)
+            );
 
-          Notiflix.Notify.warning(
-            "We're sorry, but you've reached the end of search results."
-          );
-          observer.unobserve(guard);
-        } else {
-          refs.gallery.insertAdjacentHTML('beforeend', pictureCard(data.hits));
-          observer.observe(guard);
-          refs.gallerySimpleLightbox.refresh();
-        }
-      });
+            Notiflix.Notify.warning(
+              "We're sorry, but you've reached the end of search results."
+            );
+            observer.unobserve(guard);
+          } else {
+            refs.gallery.insertAdjacentHTML(
+              'beforeend',
+              pictureCard(data.hits)
+            );
+            observer.observe(guard);
+            gallerySimpleLightbox.refresh();
+          }
+        })
+        .catch(error => console.log(error));
     }
   });
 }
